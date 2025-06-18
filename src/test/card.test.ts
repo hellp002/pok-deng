@@ -20,7 +20,7 @@ describe("Card value", () => {
                     const card = new Card(rank, suit);
                     expect(card.getCardValue()).toBe(value);
                     expect(card.getCardName()).toBe(`${suit}-${rank}`);
-                    console.log(`Card: ${card.getCardName()}, Value: ${card.getCardValue()}`);
+                
                 });
             });
         });
