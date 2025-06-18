@@ -1,13 +1,19 @@
 {
   "name": "pokdeng",
   "scripts": {
-    "dev" : "bun run --hot src/index.ts",
-    "start" : "bun run src/index.ts"
+    "dev": "bun run --hot src/index.ts",
+    "start": "bun run src/index.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@types/jest": "^30.0.0",
+    "jest": "^30.0.0",
+    "ts-jest": "^29.4.0",
+    "zod": "^3.25.67"
   }
 }
