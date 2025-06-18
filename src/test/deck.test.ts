@@ -48,4 +48,17 @@ describe("Deck", () => {
             expect(ranks.size).toBe(13); // Each suit should have 13 unique ranks
         });
     });
+
+    it("should shuffle the deck", () => {
+        const deck = new Deck();
+        let sameOrderCount = 0;
+        for (let i = 0; i < 100; i++) {
+            const shuffledDeck = deck.shuffleDeck(deck.createDeck());
+            if (shuffledDeck.every((card, index) => card.getCardName() === deck.createDeck()[index].getCardName())) {
+                sameOrderCount++;
+            }
+        }
+        // expect the deck to not be in the same order after shuffling but there might be a small chance it is in the same order
+        expect(sameOrderCount).toBeLessThan(5); // The deck should not be in the same order after shuffling
+    })
 })
