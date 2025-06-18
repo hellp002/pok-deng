@@ -2,7 +2,8 @@
   "name": "pokdeng",
   "scripts": {
     "dev": "bun run --hot src/index.ts",
-    "start": "bun run src/index.ts"
+    "start": "bun run src/index.ts",
+    "test" : "bun test"
   },
   "devDependencies": {
     "@types/bun": "latest"

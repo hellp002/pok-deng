@@ -1,6 +1,6 @@
 import { Card } from "./Card";
 import { ask } from "./readio";
-import type { GameState } from "../type/GameState";
+import type { GameResult, GameState } from "../type/GameState";
 import { Deck } from "./Deck";
 
 export class Game{
@@ -36,6 +36,20 @@ export class Game{
         this.playerChips -= amount; // Deduct bet amount from player's chips
     }
 
+    checkWinner(playerCards: Card[], dealerCards: Card[]): GameResult {
+        const playerScore = this.calculateScore(playerCards);
+        const dealerScore = this.calculateScore(dealerCards);
+        console.log(`Player score: ${playerScore}, Dealer score: ${dealerScore}`);
+
+        if (playerScore > dealerScore) {
+            return "PLAYER_WIN";
+        } else if (playerScore < dealerScore) {
+            return "DEALER_WIN";
+        } else {
+            return "TIE";
+        }
+    }
+
     async gameLoop(): Promise<void> {
         // This method would contain the main game logic, such as dealing cards, checking scores,
         //
@@ -65,13 +79,11 @@ export class Game{
                 console.log(`The dealer got: ${this.dealerCards.map(card => card.getCardName()).join(', ')}`);
                 gameState = 'CHECK_WINNER';
             } else if (gameState === 'CHECK_WINNER') {
-                const playerScore = this.calculateScore(this.playerCards);
-                const dealerScore = this.calculateScore(this.dealerCards);
-                console.log(`Your score: ${playerScore}, Dealer's score: ${dealerScore}`);
-                if (playerScore > dealerScore) {
+                const gameResult = this.checkWinner(this.playerCards, this.dealerCards);
+                if (gameResult === 'PLAYER_WIN') {
                     console.log(`You win! Receive more ${this.betAmount} chips.`);
                     this.playerChips += this.betAmount * 2; // Player wins, double the bet
-                } else if (playerScore < dealerScore) {
+                } else if (gameResult === 'DEALER_WIN') {
                     console.log(`Dealer wins! You lose your bet of ${this.betAmount} chips.`);
                 } else {
                     // user gain bet amount back
