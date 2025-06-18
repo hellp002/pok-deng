@@ -7,6 +7,7 @@ export class Deck {
 
     constructor() {
         this.cardStack = new Stack<Card>();
+        this.initializeDeck();
     }
 
     initializeDeck(): void {
