@@ -1,7 +1,6 @@
 import {describe, it, expect} from 'bun:test';
 import {Card} from '../logic/Card';
 import type { Rank, Suit } from '../type/CardType';
-import { ca } from 'zod/v4/locales';
 
 
 describe("Card value", () => {
